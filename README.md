@@ -14,3 +14,15 @@ Enter the input in that boxes so that they replace the variables in the text.
 
 If you enter "John" in the appeared box.The final output will be :"my name is John"
 
+If you enter two or more names separated by commas then those many new lines will be the output.
+
+For example: if you enter "John,Bob,Ani" in the appeared box,then output is 
+
+"my name is John
+
+ my name is Bob
+                                                    
+ my name is Ani"                                                   
+                                                                              
+                                                                                
+                                                                              
