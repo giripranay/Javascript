@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Java Script</title>
+        <h1 align="center">Java Script</h1>
+    </head>
+
+    <body>
+        <textarea id="inputbox" type="text" style="font-size:18pt;height:200px;width:420px;"></textarea>
+        <button onclick="myFunction()";this.onclick=null;>Try it</button>
+
+        <p id="n"></p>
+     <!--
+        <p id="output"></p>
+     -->   
+
+        
+
+        <script>
+            function myFunction() {
+                var text=document.getElementById("inputbox").value;
+                var n = (text.match(/{{variable[1-9]}}/g) || []).length;
+                document.getElementById("n").innerHTML=n;
+              
+                var i;
+                var A=new Array(n);
+                for(i=0;i<n;i++){
+                    A[i]=document.createElement("INPUT");
+                    A[i].setAttribute("type","text");
+                    document.body.appendChild(A[i]);
+                    
+                    var br = document.createElement('br');
+                    document.body.appendChild(br);
+                }
+
+                var btn = document.createElement("BUTTON");   // Create a <button> element
+                btn.innerHTML = "SUBMIT";                     // Insert text
+                document.body.appendChild(btn);               // Append <button> to <body>
+                btn.onclick=function(){
+                var newtext=document.getElementById("inputbox").value;
+                   
+                var twodim=new Array(n);
+                var res;
+
+                for(i=0;i<n;i++){ 
+                   res=A[i].value.split(",");     
+                   twodim[i]=res;
+                      // newtext=newtext.replace(str,A[i].value);
+                   }
+                var l = res.length;
+
+                var output = new Array(l);
+
+                
+               // alert(l);
+
+                for(i=0;i<l;i++){
+                    output[i]=newtext; 
+                      
+                    for(var j=0;j<n;j++){
+                    var str='{{variable'+(j+1)+'}}';
+                    output[i] = output[i].replace(str,twodim[j][i]);
+                    }
+                    
+                    var br = document.createElement('br');
+                    document.body.appendChild(br);
+
+                    var outtext = document.createTextNode(output[i]);
+                    document.body.appendChild(outtext);
+
+                    var br = document.createElement('br');
+                    document.body.appendChild(br);
+
+                }
+                    //document.getElementById("output").innerHTML=newtext;
+                }    
+            }
+            
+        </script>
+        
+
+
+    </body>
+
+
+
+</html>
