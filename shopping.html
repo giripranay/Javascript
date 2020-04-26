@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>WebShop</title>
+</head>
+
+<body>
+    <h1 class="heading">Web Shopping Made Easy</h1>
+
+    <button onClick="addBasket()">Add to basket</button><br><br>
+    <button onClick="checkout()">Checkout</button><br><br>
+    <button onClick="emptyBasket()">Empty basket</button>
+    <hr>
+    <h2 class="heading">Your Order</h2>
+    <textarea id='bill' style="font-size:9pt;height:200px;width:420px;"></textarea>
+
+
+    <script>
+        item = ['iPod', 'book', 'Shampoo', 'Candy', 'Pens'];
+        price = [400, 100, 5, 10, 1];
+        isPurchased = [0, 0, 0, 0, 0];
+
+        var select = document.createElement("select");
+        select.name = "items";
+        select.id = "items"
+
+        for (var i = 0; i < item.length; i++) {
+            console.log(item[i]);
+            var option = document.createElement("option");
+            option.value = item[i];
+            option.text = item[i] + ' $' + price[i];
+            select.appendChild(option);
+        }
+
+        var referenceNode = document.querySelector("h1");
+        referenceNode.after(select);
+
+        autosize(document.getElementById("bill"));
+
+        function addBasket() {
+            var i = items.selectedIndex;
+            isPurchased[i] = 1;
+        }
+
+        function checkout() {
+            var str = '';
+            var count = 0;
+            var sum = 0;
+            for (var i = 0; i < isPurchased.length; i++) {
+                if (isPurchased[i] == 1) {
+                    count = count + 1;
+                    sum = sum + price[i];
+                    str = str + item[i] + ':' + ' ' + isPurchased[i] + ' @' + price[i] + ' = $' + price[i] + '\n';
+                }
+            }
+            str = str + '-------------------------\n-------------------------\n'
+            str = str + count + ' items ordered\n';
+            str = str + 'Total = $' + sum;
+            var text = document.getElementById('bill');
+            text.value = str;
+        }
+
+        function emptyBasket() {
+            isPurchased = [0, 0, 0, 0, 0];
+            var text = document.getElementById('bill');
+            text.value = '';
+        }
+    </script>
+</body>
+
+</html>
